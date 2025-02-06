@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scry.fun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #111111, #1e1e1e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Irish Grover', sans-serif;
+            color: #f0f0f0;
+            cursor: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"%3E%3Ctext x="0" y="24" font-family="Arial, sans-serif" font-size="24"%3E🪄%3C/text%3E%3C/svg%3E'), auto;
+            overflow: hidden;
+            user-select: none;
+        }
+        h1 {
+            font-size: 150px;
+            margin: 0;
+        }
+        p {
+            font-size: 30px;
+            margin: 10px 0 0 0;
+            color: #d4d4d4;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 12px;
+            font-family: sans-serif;
+            color: #b0b0b0;
+        }
+        .sparkle {
+            position: absolute;
+            font-size: 24px;
+            animation: sparkleAnimation 1.5s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔮</h1>
+    <p>Coming Soon...</p>
+    <footer>© scry.fun 2025</footer>
+
+    <script>
+        let isMouseDown = false;
+
+        function createSparkle(event) {
+            let sparkle = document.createElement('span');
+            sparkle.textContent = '✨';
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${event.clientX + 28}px`;
+            sparkle.style.top = `${event.clientY - 12}px`;
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => sparkle.remove(), 1500);
+        }
+
+        document.body.addEventListener('mousedown', (event) => {
+            isMouseDown = true;
+            createSparkle(event);
+        });
+
+        document.body.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+
+        document.body.addEventListener('mousemove', (event) => {
+            if (isMouseDown) {
+                createSparkle(event);
+            }
+        });
+
+        document.body.addEventListener('mouseleave', () => {
+            isMouseDown = false;
+        });
+    </script>
+</body>
+</html>
