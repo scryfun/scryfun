@@ -61,7 +61,7 @@
     <footer>© scry.fun 2025</footer>
 
     <script>
-        let isMouseDown = false;
+        let isTouching = false;
 
         function createSparkle(event) {
             let sparkle = document.createElement('span');
@@ -74,23 +74,44 @@
             setTimeout(() => sparkle.remove(), 1500);
         }
 
+        // Handle mouse events for desktop
         document.body.addEventListener('mousedown', (event) => {
-            isMouseDown = true;
+            isTouching = true;
             createSparkle(event);
         });
 
         document.body.addEventListener('mouseup', () => {
-            isMouseDown = false;
+            isTouching = false;
         });
 
         document.body.addEventListener('mousemove', (event) => {
-            if (isMouseDown) {
+            if (isTouching) {
                 createSparkle(event);
             }
         });
 
         document.body.addEventListener('mouseleave', () => {
-            isMouseDown = false;
+            isTouching = false;
+        });
+
+        // Handle touch events for mobile
+        document.body.addEventListener('touchstart', (event) => {
+            isTouching = true;
+            createSparkle(event.touches[0]);  // Use the first touch point
+        });
+
+        document.body.addEventListener('touchmove', (event) => {
+            if (isTouching) {
+                createSparkle(event.touches[0]);  // Use the first touch point
+            }
+        });
+
+        document.body.addEventListener('touchend', () => {
+            isTouching = false;
+        });
+
+        document.body.addEventListener('touchcancel', () => {
+            isTouching = false;
         });
     </script>
 </body>
